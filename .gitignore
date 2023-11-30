@@ -1,9 +1,8 @@
 telegramapi.txt
 test.*
 test.*.*
-img/*
-img_512/*
-img_2x/*
+temp/*
+test/*
 
 # Created by https://www.toptal.com/developers/gitignore/api/macos,linux,windows,python
 # Edit at https://www.toptal.com/developers/gitignore?templates=macos,linux,windows,python
