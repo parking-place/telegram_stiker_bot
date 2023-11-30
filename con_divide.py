@@ -17,6 +17,9 @@ def divide_files(site_name, con_number):
         os.makedirs(f'{PATH}/anime_pack')
         # anime_pack 폴더에 .webm 파일을 저장한다.
         for file_name in webm_files:
+            # 파일 크기가 256KB 이상인 경우에는 저장하지 않는다.
+            if os.path.getsize(f'{resized_path}/{file_name}') > 256000:
+                continue
             os.system(f'cp {resized_path}/{file_name} {PATH}/anime_pack')
         
     # .png 파일이 있는지 확인한다.

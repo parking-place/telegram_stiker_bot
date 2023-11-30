@@ -79,6 +79,10 @@ def mp4towebm(path, file_name):
     if duration > 3:
         return
     
+    # # 용량이 256KB 이상인 파일은 넘어간다.
+    # if os.path.getsize(old_path) > 256000:
+    #     return
+    
     # 이미 변환된 파일이 있으면 넘어간다.
     if os.path.exists(new_path):
         return
