@@ -113,9 +113,11 @@ def con_download(urls, site_name, con_number):
         os.makedirs(f'{CON_PATH}/img')
     
     # urls를 이용해 파일을 다운로드한다.
-    for url in urls:
+    # for url in urls:
+    for i, url in enumerate(urls):
         res = requests.get(url)
-        file_name = get_file_name_arca(url)
+        file_ext = re.findall(r'[^.]*$', get_file_name_arca(url))[0]
+        file_name = f'{i:03d}.' + file_ext
         # 이미 파일이 존재하면 넘어간다.
         if os.path.exists(f'{CON_PATH}/img/' + file_name):
             continue

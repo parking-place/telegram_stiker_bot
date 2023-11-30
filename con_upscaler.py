@@ -72,6 +72,13 @@ def mp4towebm(path, file_name):
     old_path = path + '/img/' + file_name
     new_path = path + '/img_512/' + file_name.replace('.mp4', '.webm')
     
+    # 길이가 3초 이상인 파일은 넘어간다.
+    probe = ffmpeg.probe(old_path)
+    video_stream = next((stream for stream in probe['streams'] if stream['codec_type'] == 'video'), None)
+    duration = float(video_stream['duration'])
+    if duration > 3:
+        return
+    
     # 이미 변환된 파일이 있으면 넘어간다.
     if os.path.exists(new_path):
         return
