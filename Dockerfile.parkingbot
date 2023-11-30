@@ -1,30 +1,21 @@
-# FROM ubuntu:22.04
+FROM ubuntu:22.04
 
-# RUN apt-get update -y && apt-get install -y apt-utils && apt-get install -y python3.11 python3-pip
+RUN apt-get update -y && apt-get install -y apt-utils && apt-get install -y python3.11 python3-pip
 
-# RUN python3.11 -m pip install --upgrade pip
-
-# RUN apt-get install -y git
-
-# # requirements.txt 복사
-# COPY requirements.txt /tmp/requirements.txt
-
-# # requirements.txt 설치
-# RUN python3.11 -m pip install -r /tmp/requirements.txt
-
-# # app이 돌아갈 폴더 생성
-# RUN mkdir /app
-
-# # app 폴더로 이동
-# WORKDIR /app
-
-# 가벼운 이미지를 사용하기 위해 alpine 이미지 사용
-FROM python:3.11.0a6-alpine3.14
-
+# pip 업그레이드
 RUN python3.11 -m pip install --upgrade pip
 
+# pip3 업그레이드
+RUN pip3 install --upgrade pip
+
+# apt-get 업그레이드
+RUN apt-get update -y
+
+# gcc 설치
+RUN apt-get install -y gcc
+
 # git 설치
-RUN apk add git
+RUN apt-get install -y git
 
 # cuda 설치
 RUN pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
