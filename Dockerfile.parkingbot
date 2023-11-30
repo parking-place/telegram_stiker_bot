@@ -14,3 +14,6 @@ RUN python3.11 -m pip install -r /tmp/requirements.txt
 
 # app이 돌아갈 폴더 생성
 RUN mkdir /app
+
+# app 폴더로 이동
+WORKDIR /app
