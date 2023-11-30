@@ -21,6 +21,8 @@ def divide_files(site_name, con_number):
         
     # .png 파일이 있는지 확인한다.
     png_files = [file_name for file_name in os.listdir(resized_path) if file_name.endswith('.png')]
+    # 파일 이름을 정렬한다.
+    png_files.sort()
     # 필요한 static 폴더의 개수를 구한다.
     static_num = len(png_files) // 50 + 1
 

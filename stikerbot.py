@@ -137,7 +137,7 @@ async def upload_files(update, context, site_name, con_number, con_title):
         
         count = 0
         total = len(os.listdir(anime_pack_path))
-        for file_name in os.listdir(anime_pack_path):
+        for file_name in sorted(os.listdir(anime_pack_path)):
             count += 1
             res = await bot.send_video(chat_id=JJAM_ID, video=open(anime_pack_path + '/' + file_name, 'rb'), supports_streaming=True)
             id = res.to_dict()['document']['file_id']
@@ -157,7 +157,7 @@ async def upload_files(update, context, site_name, con_number, con_title):
             count_2 = 0
             total_2 = len(os.listdir(static_folder))
             static_file_ids = []
-            for file_name in os.listdir(static_folder):
+            for file_name in sorted(os.listdir(static_folder)):
                 count_2 += 1
                 res = await bot.send_document(chat_id=JJAM_ID, document=open(static_folder + '/' + file_name, 'rb'))
                 id = res.to_dict()['document']['file_id']
