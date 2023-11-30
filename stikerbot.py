@@ -8,7 +8,7 @@ import asyncio
 
 import os
 import sys
-import con_crawler, con_upscaler
+import con_crawler, con_upscaler, divide_files
 
 import re
 
@@ -113,7 +113,8 @@ async def make_con(update, context):
         await update.message.reply_text("업스케일링에 실패하였습니다.")
     
     await update.message.reply_text("콘을 100개씩 나눕니다.")
-    con_crawler.divide_files(site_name, con_number)
+    # con_crawler.divide_files(site_name, con_number)
+    devide_files.divide_files(site_name, con_number)
     await update.message.reply_text("콘을 100개씩 나누었습니다.")
     
     bot_sign = ' by @parkings_stiker_bot 개인용 스티커 봇'
