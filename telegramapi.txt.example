@@ -1,0 +1,9 @@
+api_token 봇_토큰
+chat_id 챗_아이디(숫자)
+jjamtong_id 이미지를_텔레그램에_업로드할_짬통_계정_아이디(숫자)
+link t.me/머시기
+api_page https://api.telegram.org/bo토큰/getUpdates
+api_getme https://api.telegram.org/bot토큰/getMe
+bot_name 봇이름
+bot_sign by_봇이름
+bot_title_sign by_아무사인
