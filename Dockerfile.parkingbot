@@ -1,10 +1,30 @@
-FROM ubuntu:22.04
+# FROM ubuntu:22.04
 
-RUN apt-get update -y && apt-get install -y apt-utils && apt-get install -y python3.11 python3-pip
+# RUN apt-get update -y && apt-get install -y apt-utils && apt-get install -y python3.11 python3-pip
+
+# RUN python3.11 -m pip install --upgrade pip
+
+# RUN apt-get install -y git
+
+# # requirements.txt 복사
+# COPY requirements.txt /tmp/requirements.txt
+
+# # requirements.txt 설치
+# RUN python3.11 -m pip install -r /tmp/requirements.txt
+
+# # app이 돌아갈 폴더 생성
+# RUN mkdir /app
+
+# # app 폴더로 이동
+# WORKDIR /app
+
+# 가벼운 이미지를 사용하기 위해 alpine 이미지 사용
+FROM python:3.11.0a6-alpine3.14
 
 RUN python3.11 -m pip install --upgrade pip
 
-RUN apt-get install -y git
+# git 설치
+RUN apk add git
 
 # requirements.txt 복사
 COPY requirements.txt /tmp/requirements.txt
