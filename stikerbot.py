@@ -134,10 +134,15 @@ async def upload_files(update, context, site_name, con_number, con_title):
     anime_file_ids = None
     if os.path.exists(anime_pack_path):
         anime_file_ids = []
+        
+        count = 0
+        total = len(os.listdir(anime_pack_path))
         for file_name in os.listdir(anime_pack_path):
+            count += 1
             res = await bot.send_video(chat_id=JJAM_ID, video=open(anime_pack_path + '/' + file_name, 'rb'), supports_streaming=True)
             id = res.to_dict()['document']['file_id']
             anime_file_ids.append(id)
+            print(f'animated : {count} / {total} 완료')
             
     await update.message.reply_text(f"{con_title}{BOT_TITLE} 움짤콘을 업로드하였습니다.")
         
@@ -145,12 +150,19 @@ async def upload_files(update, context, site_name, con_number, con_title):
     # 없으면 넘어간다.
     static_ids_list = []
     if len(static_folders) > 0:
+        count_1 = 0
+        total_1 = len(static_folders)
         for static_folder in static_folders:
+            count_1 += 1
+            count_2 = 0
+            total_2 = len(os.listdir(static_folder))
             static_file_ids = []
             for file_name in os.listdir(static_folder):
+                count_2 += 1
                 res = await bot.send_document(chat_id=JJAM_ID, document=open(static_folder + '/' + file_name, 'rb'))
                 id = res.to_dict()['document']['file_id']
                 static_file_ids.append(id)
+                print(f'static : {count_1} / {total_1} : {count_2} / {total_2} 완료')
             static_ids_list.append(static_file_ids)
     
     await update.message.reply_text(f"{con_title}{BOT_TITLE} 스티커를 업로드하였습니다.")
@@ -158,6 +170,7 @@ async def upload_files(update, context, site_name, con_number, con_title):
     # 썸네일을 JJAM_ID에게 전송한다.
     res = await bot.send_document(chat_id=JJAM_ID, document=open(thumbnail_path, 'rb'))
     thumbnail_file_id = res.to_dict()['document']['file_id']
+    print('썸네일 업로드 완료')
     # 비디오 썸네일을 JJAM_ID에게 전송한다.
     # 없으면 넘어간다.
     video_thumbnail_file_id = None

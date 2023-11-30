@@ -79,6 +79,6 @@ def mp4towebm(path, file_name):
     # ffmpeg -i input.mp4 -c:v libvpx-vp9 -vf "scale:100x100" -b:a 128k -b:v 1M -c:a -an libopus output.webm
     # 프레임 60으로 고정
     stream = ffmpeg.input(old_path)
-    stream = ffmpeg.output(stream, new_path, vcodec='libvpx-vp9', acodec='libopus', vf='scale=100:100', b='1M', an=None, r=60)
+    stream = ffmpeg.output(stream, new_path, vcodec='libvpx-vp9', acodec='libopus', vf='scale=512:512', b='1M', an=None, r=60)
     ffmpeg.run(stream)
     
