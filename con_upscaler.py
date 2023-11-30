@@ -54,6 +54,17 @@ def upscale(site_name, con_number):
             img.save(f'{CON_PATH}/thumbnail.png')
             break
     
+    # 비디오 썸네일 생성
+    # 첫 비디오 파일을 webm으로 변환하여 썸네일로 사용한다.
+    # 이미 변환된 파일이 있으면 넘어간다.
+    if not os.path.exists(f'{CON_PATH}/thumbnail.webm'):
+        for file_name in os.listdir(f'{CON_PATH}/img_512'):
+            if file_name.endswith('.webm'):
+                stream = ffmpeg.input(f'{CON_PATH}/img_512/' + file_name)
+                stream = ffmpeg.output(stream, f'{CON_PATH}/thumbnail.webm', vcodec='libvpx-vp9', acodec='libopus', vf='scale=512:512', b='256K', an=None, r=60)
+                ffmpeg.run(stream)
+                break
+    
     return True
 
 # .mp4 파일을 webm으로 변환하는 함수
@@ -68,6 +79,6 @@ def mp4towebm(path, file_name):
     # ffmpeg -i input.mp4 -c:v libvpx-vp9 -vf "scale:100x100" -b:a 128k -b:v 1M -c:a -an libopus output.webm
     # 프레임 60으로 고정
     stream = ffmpeg.input(old_path)
-    stream = ffmpeg.output(stream, new_path, vcodec='libvpx-vp9', acodec='libopus', vf='scale=512:512', b='1M', an=None, r=60)
+    stream = ffmpeg.output(stream, new_path, vcodec='libvpx-vp9', acodec='libopus', vf='scale=100:100', b='1M', an=None, r=60)
     ffmpeg.run(stream)
     
