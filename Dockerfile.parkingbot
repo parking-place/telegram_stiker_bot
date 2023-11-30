@@ -34,4 +34,4 @@ WORKDIR /app
 
 # docker build -t parkingplace/parkingstikerbot:latest -f Dockerfile.parkingbot .
 # docker push parkingplace/parkingstikerbot:latest
-# docker run -d --ipc host --privileged -it parkingplace/parkingstikerbot:latest
+# docker run -d --name parkin_bot --hostname PARKINGBOT --ipc host --privileged -it parkingplace/parkingstikerbot:latest
