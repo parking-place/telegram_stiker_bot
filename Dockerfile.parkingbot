@@ -26,6 +26,9 @@ RUN python3.11 -m pip install --upgrade pip
 # git 설치
 RUN apk add git
 
+# cuda 설치
+RUN pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+
 # requirements.txt 복사
 COPY requirements.txt /tmp/requirements.txt
 
@@ -37,3 +40,7 @@ RUN mkdir /app
 
 # app 폴더로 이동
 WORKDIR /app
+
+# docker build -t parkingplace/parkingstikerbot:latest -f Dockerfile.parkingbot .
+# docker push parkingplace/parkingstikerbot:latest
+# docker run -d --ipc host --privileged -it parkingplace/parkingstikerbot:latest
