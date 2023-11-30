@@ -1,0 +1,37 @@
+FROM ubuntu:22.04
+
+RUN apt-get update -y && apt-get install -y apt-utils && apt-get install -y python3.11 python3-pip
+
+# pip 업그레이드
+RUN python3.11 -m pip install --upgrade pip
+
+# pip3 업그레이드
+RUN pip3 install --upgrade pip
+
+# apt-get 업그레이드
+RUN apt-get update -y
+
+# gcc 설치
+RUN apt-get install -y gcc
+
+# git 설치
+RUN apt-get install -y git
+
+# cuda 설치
+RUN pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu118
+
+# requirements.txt 복사
+COPY requirements.txt /tmp/requirements.txt
+
+# requirements.txt 설치
+RUN python3.11 -m pip install -r /tmp/requirements.txt
+
+# app이 돌아갈 폴더 생성
+RUN mkdir /app
+
+# app 폴더로 이동
+WORKDIR /app
+
+# docker build -t parkingplace/parkingstikerbot:latest -f Dockerfile.parkingbot .
+# docker push parkingplace/parkingstikerbot:latest
+# docker run -d --name parkin_bot --hostname PARKINGBOT --ipc host --privileged -it parkingplace/parkingstikerbot:latest
